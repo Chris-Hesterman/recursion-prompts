@@ -73,7 +73,7 @@ var range = function(x, y) {
     if (element === y || x === y) return result;
     if (x !== y) result.push(element);
     result = result.concat(range(element, y));
-    
+
     return result
  };
 
@@ -86,9 +86,10 @@ var exponent = function(base, exp) {
     if (exp === 0) return 1;
     if (exp < 0) {
         base = 1 / base;
-        return 1 / base;
-    }
-    return base * exponent(base, exp - 1);
+        exp = -exp;
+    } 
+
+    return base * exponent(base, exp - 1).toFixed(4);
 };
 
 // 8. Determine if a number is a power of two.
