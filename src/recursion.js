@@ -119,6 +119,16 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+    const str = string.replace(/\s/g, '').toLowerCase();
+    const length = str.length;
+    const newString = str.slice(1, str.length - 1);
+
+    if (str[0] !== str[length - 1])  {
+        return false;
+    } 
+    if (newString.length <= 1) return true;
+
+    return palindrome(newString);
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -128,12 +138,10 @@ var palindrome = function(string) {
 // modulo(22,6) // 4
 var modulo = function(x, y) {
     
-        if (x < y) return x;
-    
-    
+    if (x < y) return x;
     
 
-    return modulo((x - y), y);
+    return modulo((Math.abs(x) - Math.abs(y)), Math.abs(y));
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
@@ -159,6 +167,14 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+    const newStr1 = str1.slice(1);
+    const newStr2 = str2.slice(1);
+    //the line below would shorten run time if string lengths are not equal.
+    // if (str1.length !== str2.length) return false; 
+    if (str1[0] !== str2[0]) return false;
+    if (str1.length === 0 && str2.length === 0) return true;
+
+    return compareStr(newStr1, newStr2);
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
