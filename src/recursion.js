@@ -139,8 +139,11 @@ var palindrome = function(string) {
 var modulo = function(x, y) {
     const abx = x < 0 ? -x: x;
     const aby = y < 0 ? -y: y;
+    const diff = abx - aby;
     const newX = abx - aby;
 
+    if (x < 0 && y < 0 && y < x) return x;
+    if (x < 0 && y < 0 && x < y && diff < aby) return -(abx - aby);
     if (abx === 0 && aby === 0) return NaN;
     if (newX === aby) return 0;
     if (abx < aby) return y < 0 ? -x: x;
@@ -207,6 +210,7 @@ var compareStr = function(str1, str2) {
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str) {
+
 };
 
 // 17. Reverse the order of an array
