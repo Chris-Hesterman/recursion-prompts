@@ -190,6 +190,16 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+    let rmdr = x % y;
+
+    if (x === 0) return y;
+    if (y === 0) return x;
+    if (x < 0 || y < 0) return null;
+
+    x = y;
+    y = rmdr;
+    
+    return gcd(x, y);
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
@@ -298,6 +308,12 @@ var rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+    let count = 0;
+
+    
+
+    
+    return count + countKeysInObj(obj, key);
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
