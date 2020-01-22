@@ -137,11 +137,16 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
-    
-    if (x < y) return x;
-    
+    const abx = x < 0 ? -x: x;
+    const aby = y < 0 ? -y: y;
+    const newX = abx - aby;
 
-    return modulo((Math.abs(x) - Math.abs(y)), Math.abs(y));
+    if (abx === 0 && aby === 0) return NaN;
+    if (newX === aby) return 0;
+    if (abx < aby) return y < 0 ? -x: x;
+    if (newX < aby) return newX;
+    
+    return modulo(newX, y)
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
@@ -151,7 +156,6 @@ var multiply = function(x, y) {
     let newY = y < 0 ? y + 1: y - 1;
     
     if (y < 0) total = -total;
-    
     if ( y === 1 || y === -1) return total;
   
     return total + multiply(x, newY);
@@ -161,6 +165,20 @@ var multiply = function(x, y) {
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
+    let total = 0;
+    x = x < 0 ? -x: x;
+    y = y < 0 ? -y: y;
+    let newX = x - y;
+
+    if (x === 0 && y === 0) total = NaN;
+    if (x === 0) return total;
+    if (x >= y) {
+        total++;
+    } else {
+        return total;
+    }
+    
+    return total + divide(newX, y);
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
