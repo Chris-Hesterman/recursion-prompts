@@ -213,8 +213,8 @@ var createArray = function(str) {
     let resultArr = [];
     const letter = str.slice(0, 1);
     const newStr = str.slice(1);
-    if (str.length === 0) return resultArr;
 
+    if (str.length === 0) return resultArr;
     resultArr.push(letter);
 
     return resultArr.concat(createArray(newStr))
@@ -222,6 +222,13 @@ var createArray = function(str) {
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+    let resultArr = [];
+    const popped = array.pop();
+
+    if (!popped) return resultArr;
+    resultArr.push(popped);
+
+    return resultArr.concat(reverseArr(array));
 };
 
 // 18. Create a new array with a given value and length.
