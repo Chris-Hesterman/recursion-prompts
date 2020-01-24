@@ -369,7 +369,8 @@ var fibonacci = function(n) {
     if (n === 1) return [0, 1];
     
     let results = fibonacci(n - 1);
-    results.push(results[results.length - 1] + results[results.length - 2]);
+    let length = results.length;
+    results.push(results[length - 1] + results[length - 2]);
     
     return results
 } 
