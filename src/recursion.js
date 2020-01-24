@@ -365,14 +365,20 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function(n) {
-};
-
+    
+}
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.
 // [0,1,1,2,3,5,8,13,21]
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+    if (n < 0) return null;
+    if (n === 0) return 0;
+    if (n === 1) {
+        return 1;
+    }  
+    return nthFibo(n - 1) + nthFibo(n - 2);
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
