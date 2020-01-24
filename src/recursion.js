@@ -365,8 +365,14 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function(n) {
+    if (n <= 0) return null;
+    if (n === 1) return [0, 1];
     
-}
+    let results = fibonacci(n - 1);
+    results.push(results[results.length - 1] + results[results.length - 2]);
+    
+    return results
+} 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.
 // [0,1,1,2,3,5,8,13,21]
 // nthFibo(5); // 5
