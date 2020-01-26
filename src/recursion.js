@@ -554,6 +554,20 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+    let strArray = str.split(' ');
+    let word = strArray.shift();
+    let newStr = strArray.slice(0).join(' ');
+    let numWords = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+    let result;
+
+    word = numWords[+word] || word;
+
+    if (strArray.length !== 0) word = word + ' ';
+    if (str.length === 0) return '';
+    
+    result = numToText(newStr);
+    
+    return word + result;
 };
 
 
