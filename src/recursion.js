@@ -516,17 +516,16 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
     let newArr = array.slice(1);
-    let item = array.slice(0, 1);
+    let item = array[0];
     let result;
 
-    if(!item.length) return [];
+    if(!array.length) return [];
 
     result = minimizeZeroes(newArr);
 
-    if (item[0] !== 0) result.unshift(item[0]);
-    if (item[0] === 0 && array[1] !== 0) result.unshift(item[0]);
+    if (item !== 0) result.unshift(item);
+    if (item === 0 && array[1] !== 0) result.unshift(item);
     
-
     return result;
 };
 
@@ -535,6 +534,20 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+    let newArr = array.slice(1);
+    let item = array[0];
+    let result;
+
+    if(!array.length) return [];
+
+    result = alternateSign(newArr);
+
+    if (result.length % 2 !== 0) {
+        result.unshift(Math.abs(item))
+    } else {
+        result.unshift(Math.abs(item) * -1);
+    }
+    return result
 };
 
 // 36. Given a string, return a string with digits converted to their word equivalent.
