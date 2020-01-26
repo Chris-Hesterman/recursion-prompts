@@ -486,11 +486,11 @@ var compress = function(list) {
     let item = list[0];
 
     if(!item) return [];
+
     let result = compress(newList);
+    
     if (item !== newList[0]) result.unshift(item);
 
-    
-    
     return result;
 };
 
@@ -498,6 +498,17 @@ var compress = function(list) {
 // itself.
 // augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
 var augmentElements = function(array, aug) {
+    let newArray = array.slice(1);
+    let item = array.slice(0, 1)[0];
+    let result;
+    
+    if (!array.length) return [];
+
+    result = augmentElements(newArray, aug);
+    item.push(aug);
+    result.unshift(item);
+    
+    return result;
 };
 
 // 34. Reduce a series of zeroes to a single 0.
