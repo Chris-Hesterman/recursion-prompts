@@ -575,8 +575,18 @@ var numToText = function(str) {
 
 // 37. Return the number of times a tag occurs in the DOM.
 var tagCount = function(tag, node) {
-    
+    if (node === undefined) {
+        node = Array.from(document.querySelectorAll('*'));
+    }
+    let item = node.length ? node.pop(): null;
+    let result;
+    let count = 0;
 
+    if (!item) return count;
+    if (item.localName === tag) count++;
+    result = count + tagCount(tag, node);
+
+    return result;
 };
 
 // 38. Write a function for binary search.
@@ -644,12 +654,13 @@ var mergeSort = function(array) {
 // console.log(obj2); // {a:1,b:{bb:{bbb:2}},c:3}
 // obj1 === obj2 // false
 var clone = function(input) {
-    
+
     if (Array.isArray(input)) return array(input);
     if (typeof input === 'object' && input !== null) return object(input);
 
     function object(obj) {
         let objClone = {};
+
         for (let prop in obj) {
             if (typeof obj[prop] === 'object' && obj[prop] !== null) {
                 objClone[prop] = clone(obj[prop]);
@@ -662,6 +673,7 @@ var clone = function(input) {
 
     function array(arr) {
         let arrClone = [];
+
         for (let item of arr) {
             if (typeof item === 'object' && item !== null) {
                 arrClone.push(clone(item));
