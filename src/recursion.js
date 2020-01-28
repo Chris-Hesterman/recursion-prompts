@@ -592,7 +592,7 @@ var binarySearch = function(array, target, min, max) {
     if (array[middle] === target) return middle;
     if (array[min] === target) return min;
     if (array[max] === target) return max;
-    if (min >= max) return null;
+    if (min > max) return null;
     
     const newMin = array[middle] < target ? middle + 1: min;
     const newMax = array[middle] > target ? middle - 1: max;
@@ -606,6 +606,36 @@ var binarySearch = function(array, target, min, max) {
 // mergeSort([34,7,23,32,5,62]) // [5,7,23,32,34,62]
 // https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms
 var mergeSort = function(array) {
+    if (array.length <= 1) return array;
+    const mid = Math.floor(array.length / 2);
+    const left = mergeSort(array.slice(0, mid));
+    const right = mergeSort(array.slice(mid));
+
+    return merge(left, right);
+
+    function merge (arr1, arr2) {
+        let united = [];
+        let i = 0, j = 0;
+
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                united.push(arr1[i]);
+                i++;
+            } else {
+                united.push(arr2[j]);
+                j++;
+            } 
+        }
+        while (i < arr1.length) {
+            united.push(arr1[i]);
+            i++;
+        }
+        while (j < arr2.length) {
+            united.push(arr2[j]);
+            j++
+        }
+        return united;
+    }
 };
 
 // 40. Deeply clone objects and arrays.
