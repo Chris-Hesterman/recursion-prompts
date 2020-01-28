@@ -585,7 +585,7 @@ var tagCount = function(tag, node) {
 // https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search
 var binarySearch = function(array, target, min, max) {
     min = min === undefined ? 0: min;
-    max = max ===  undefined ? array.length - 1: max
+    max = max ===  undefined ? array.length - 1: max;
     const subArray = array.slice(min, max + 1);
     const middle = min + Math.floor((subArray.length - 1) / 2);
     
@@ -595,7 +595,7 @@ var binarySearch = function(array, target, min, max) {
     if (min >= max) return null;
     
     const newMin = array[middle] < target ? middle + 1: min;
-    const newMax = array[middle] > target ? middle - 1: max
+    const newMax = array[middle] > target ? middle - 1: max;
     
     return binarySearch(array, target, newMin, newMax);
 };
