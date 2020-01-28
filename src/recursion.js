@@ -472,7 +472,7 @@ var letterTally = function(str, obj) {
     
     let result = letterTally(newStr);
     result[letter] = (result[letter] + 1) || 1;
-    console.log(result);
+
     return result;
 };
 
@@ -575,6 +575,8 @@ var numToText = function(str) {
 
 // 37. Return the number of times a tag occurs in the DOM.
 var tagCount = function(tag, node) {
+    
+
 };
 
 // 38. Write a function for binary search.
@@ -582,7 +584,23 @@ var tagCount = function(tag, node) {
 // binarySearch(array, 5) // 5
 // https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search
 var binarySearch = function(array, target, min, max) {
+    min = min === undefined ? 0: min;
+    max = max ===  undefined ? array.length - 1: max
+    const subArray = array.slice(min, max + 1);
+    const middle = min + Math.floor((subArray.length - 1) / 2);
+    
+    if (array[middle] === target) return middle;
+    if (array[min] === target) return min;
+    if (array[max] === target) return max;
+    if (min >= max) return null;
+    
+    const newMin = array[middle] < target ? middle + 1: min;
+    const newMax = array[middle] > target ? middle - 1: max
+    
+    return binarySearch(array, target, newMin, newMax);
 };
+
+
 
 // 39. Write a merge sort function.
 // mergeSort([34,7,23,32,5,62]) // [5,7,23,32,34,62]
