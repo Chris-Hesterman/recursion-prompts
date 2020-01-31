@@ -480,7 +480,9 @@ var capitalizeFirst = function(array) {
   let word;
   let first;
 
-  if (array.length === 0) return newArray;
+  if (array.length === 0) {
+    return newArray;
+  }
   word = array.pop();
   first = word.slice(0, 1).toUpperCase();
   word = first + word.slice(1);
